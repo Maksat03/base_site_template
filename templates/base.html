@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animation test site</title>
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    <!--  ALL STYLES HERE  -->
+
+</head>
+<body>
+    {% block base_body %}{% endblock %}
+    <script src="{% static 'js/base.js' %}"></script>
+
+    <!--  ALL SCRIPTS HERE  -->
+
+</body>
+</html>
