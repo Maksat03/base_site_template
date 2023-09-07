@@ -4,15 +4,23 @@ function set_page_title() {
 }
 
 
+function wait_page_disappearing() {
+    document.getElementsByClassName("loading_block")[0].className = "loading_block active_loading_block"
+    document.getElementsByClassName("body")[0].removeEventListener("transitionend", wait_page_disappearing)
+}
+
+
 function disappear_page() {
-    document.body.classList.remove('fade-in');
-    document.body.classList.add('fade-out');
+    document.getElementsByClassName("body")[0].classList.remove('fade-in');
+    document.getElementsByClassName("body")[0].classList.add('fade-out');
+    document.getElementsByClassName("body")[0].addEventListener("transitionend", wait_page_disappearing)
 }
 
 
 function appear_page() {
-    document.body.classList.remove('fade-out');
-    document.body.classList.add('fade-in');
+    document.getElementsByClassName("loading_block")[0].className = "loading_block"
+    document.getElementsByClassName("body")[0].classList.remove('fade-out');
+    document.getElementsByClassName("body")[0].classList.add('fade-in');
 }
 
 
@@ -22,7 +30,7 @@ function load_page(url) {
             'X-Requested-With': 'XMLHttpRequest'
         }
     }).then((response) => {
-        document.body.innerHTML = response.data;
+        document.getElementsByClassName("body")[0].innerHTML = response.data;
 
         set_anchors_click_event_listener()
         set_page_title()
@@ -58,7 +66,7 @@ function set_anchors_click_event_listener() {
 
                 window.history.pushState({}, "", href);
                 load_page(href);
-            }, 250);
+            }, 500);
         });
     });
 }
