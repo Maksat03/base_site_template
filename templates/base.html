@@ -1,21 +1,15 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>animation test site</title>
+    <title>AnimationTest.Site</title>
 
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-
+    <link rel="stylesheet" href="/static/css/base.css">
     <!--  ALL STYLES HERE  -->
 
-</head>
-<body>
-    {% block base_body %}{% endblock %}
-    <script src="{% static 'js/base.js' %}"></script>
-
+    <script src="/static/js/packages/axios.min.js"></script>
+    <script src="/static/js/base.js"></script>
     <!--  ALL SCRIPTS HERE  -->
-
-</body>
+</head>
+<body class="fade-out"></body>
 </html>
