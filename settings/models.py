@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
+class Slide(models.Model):
+    image = models.ImageField(upload_to="slide_images/")
+    link = models.CharField(max_length=500, default="/")

@@ -62,9 +62,9 @@ INSTALLED_APPS = [
     'portfolio',
     'product',
     'request',
-    'client',  # + feedback
-    'settings',  # + contacts + sliders + password + tg_ids (+ maybe discounts)
-    'user',
+    'feedback',
+    'settings',  # + contacts + tg_ids
+    'user',  # + password changing
 
     'debug_toolbar',
     'rest_framework'

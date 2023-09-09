@@ -1,10 +1,11 @@
 import logging
 from aiogram import Bot, Dispatcher, executor
 from aiogram.types import ContentType, Message
+from project.settings import BOT_TOKEN
 
 
 logging.basicConfig(level=logging.INFO)
-bot = Bot(token='6238442815:AAGzzxZM5AewW8is7aul0NQxMfjmyx0eZZU', parse_mode='HTML')
+bot = Bot(token=BOT_TOKEN, parse_mode='HTML')
 dp = Dispatcher(bot)
 
 
