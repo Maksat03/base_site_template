@@ -47,6 +47,7 @@ MEDIA_URL = '/media/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = "/admin/"
 LOGOUT_REDIRECT_URL = "/"
 
 
@@ -63,8 +64,10 @@ INSTALLED_APPS = [
     'product',
     'request',
     'feedback',
-    'settings',  # + contacts + tg_ids
-    'user',  # + password changing
+    'settings',  # + contacts(+ social networks) + tg_ids
+    'user',
+
+    'case',
 
     'debug_toolbar',
     'rest_framework'

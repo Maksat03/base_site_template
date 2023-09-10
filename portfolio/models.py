@@ -7,6 +7,7 @@ class Portfolio(models.Model):
     name = models.CharField(max_length=255)
     poster = models.ImageField(upload_to="portfolio_posters/")
     description = models.TextField()
+    feedback = None  # TODO: think out
 
 
 class PortfolioImage(models.Model):
