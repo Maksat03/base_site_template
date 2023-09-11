@@ -21,6 +21,12 @@ class BaseViewsPresenter:
         obj = self.services.get(request.query_params.get("id"))
         return Response(obj.data)
 
+    @method_decorator(api_view(["GET"]))
+    def search_view(self, request: Request) -> Response:
+        objs = self.services.search(request.query_params.get("search_input"),
+                                    request.query_params.get("searching_fields"))
+        return Response(objs.data)
+
     @method_decorator(api_view(["POST"]))
     # @method_decorator(permission_classes([IsAdminUser]))
     def delete_view(self, request: Request) -> Response:
@@ -37,4 +43,10 @@ class BaseViewsPresenter:
 #     @method_decorator(permission_classes([IsAdminUser]))
     def edit_view(self, request: Request) -> Response:
         self.services.edit(request.data.pop("id"), request.data)
+        return Response({"success": True})
+
+    @method_decorator(api_view(["POST"]))
+    # @method_decorator(permission_classes([IsAdminUser]))
+    def update_fields_view(self, request: Request) -> Response:
+        self.services.update_fields(request.data.pop("id"), request.data)
         return Response({"success": True})
