@@ -25,6 +25,8 @@ class BaseServicesPresenter:
                    .only(*get_many_query["only"])
                    .distinct())
 
+        # TODO: get 50 by 50, for ex. last_obj_id, include filtration and order by, etc.
+
         return self.serializers["objects"](objects, many=True)
 
     def get(self, obj_id: int):

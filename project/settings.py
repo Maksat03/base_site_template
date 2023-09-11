@@ -69,6 +69,7 @@ INSTALLED_APPS = [
 
     'case',
 
+    'base_object_presenter',
     'debug_toolbar',
     'rest_framework'
 ]

@@ -27,12 +27,12 @@ urlpatterns = [
     path('login/', LoginView.as_view()),
     path("logout/", LogoutView.as_view()),
 
-    path('api/feedback/', include("feedback.urls")),
-    path('api/portfolio/', include("portfolio.urls")),
-    path('api/product/', include("product.urls")),
-    path('api/request/', include("request.urls")),
-    path('api/settings/', include("settings.urls")),
-    path('api/user/', include("user.urls")),
+    # path('api/feedback/', include("feedback.urls")),
+    # path('api/portfolio/', include("portfolio.urls")),
+    # path('api/product/', include("product.urls")),
+    # path('api/request/', include("request.urls")),
+    # path('api/settings/', include("settings.urls")),
+    # path('api/user/', include("user.urls")),
 
     path('api/case/', include("case.urls")),
 ]
