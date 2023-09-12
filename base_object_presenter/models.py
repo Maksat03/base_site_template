@@ -52,3 +52,11 @@ class BaseModelPresenter:
 
     def object_form_serializer_create(self, validated_data):
         return self.model.objects.create(**validated_data)
+
+    @staticmethod
+    def get_updatable_fields():
+        return []
+
+    @staticmethod
+    def get_searchable_fields():
+        return []

@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from base_object_presenter.views import BaseViewsPresenter
+from .services import RequestServicesPresenter
 
-# Create your views here.
+
+class RequestViewsPresenter(BaseViewsPresenter):
+    services = RequestServicesPresenter()

@@ -2,6 +2,7 @@ import functools
 from typing import MutableMapping
 
 from django.db.models import Q
+from rest_framework.exceptions import ValidationError
 
 from .models import BaseModelPresenter
 from .serializers import BaseSerializerPresenter, BaseSerializer
@@ -63,10 +64,12 @@ class BaseServicesPresenter:
     def search(self, search_input: str, searching_fields: list) -> BaseSerializer:
         words = search_input.split()
         icontains_filters = []
+        searchable_fields = self.model_presenter.get_searchable_fields()
 
         for searching_field in searching_fields:
-            for query in words:
-                icontains_filters.append(Q(**{f"{searching_field}__icontains": query.lower()}))
+            if searching_field in searchable_fields:
+                for query in words:
+                    icontains_filters.append(Q(**{f"{searching_field}__icontains": query.lower()}))
 
         combined_filter = functools.reduce(lambda a, b: a | b, icontains_filters)
 
@@ -83,4 +86,15 @@ class BaseServicesPresenter:
         return self.serializers["objects"](objs, many=True)
 
     def update_fields(self, obj_id: int, data: MutableMapping) -> None:
+        updatable_fields = self.model_presenter.get_updatable_fields()
+
+        for key, value in data.items():
+            if data[key] not in updatable_fields:
+                raise ValidationError({'detail': 'Not updatable field "key"'})
+            else:
+                try:
+                    getattr(self.model_presenter.model, key).clean(value, None)
+                except Exception as e:
+                    raise ValidationError({'detail': e})
+
         self.model_presenter.model.objects.filter(id=obj_id).update(**data)
