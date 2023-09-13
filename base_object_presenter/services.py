@@ -90,7 +90,7 @@ class BaseServicesPresenter:
 
         for key, value in data.items():
             if data[key] not in updatable_fields:
-                raise ValidationError({'detail': 'Not updatable field "key"'})
+                raise ValidationError({'detail': f'Not updatable field "{key}"'})
             else:
                 try:
                     getattr(self.model_presenter.model, key).clean(value, None)

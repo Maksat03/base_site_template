@@ -63,11 +63,8 @@ INSTALLED_APPS = [
     'portfolio',
     'product',
     'request',
-    'feedback',
     'settings',  # + contacts(+ social networks) + tg_ids
     'user',
-
-    'case',
 
     'base_object_presenter',
     'debug_toolbar',

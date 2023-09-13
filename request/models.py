@@ -15,7 +15,7 @@ class Request(models.Model):
 
 
 class RequestModelPresenter(BaseModelPresenter):
-    model = Request()
+    model = Request
 
     @staticmethod
     def get_object_form_serializer_fields():
