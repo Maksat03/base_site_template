@@ -40,11 +40,19 @@ class BaseModelPresenter:
         return {}
 
     @staticmethod
-    def get_object_form_serializer_fields():
+    def get_object_add_form_serializer_fields():
         return "__all__"
 
     @staticmethod
-    def get_object_form_serializer_extra_fields():
+    def get_object_add_form_serializer_extra_fields():
+        return {}
+
+    @staticmethod
+    def get_object_edit_form_serializer_fields():
+        return "__all__"
+
+    @staticmethod
+    def get_object_edit_form_serializer_extra_fields():
         return {}
 
     def object_form_serializer_update(self, instance, validated_data):

@@ -14,7 +14,8 @@ class BaseServicesPresenter:
     def __init__(self):
         self.serializers = {
             "objects": BaseSerializerPresenter(self.model_presenter, "objects"),
-            "object_form": BaseSerializerPresenter(self.model_presenter, "object_form"),
+            "object_add_form": BaseSerializerPresenter(self.model_presenter, "object_add_form"),
+            "object_edit_form": BaseSerializerPresenter(self.model_presenter, "object_edit_form"),
             "object": BaseSerializerPresenter(self.model_presenter, "object"),
         }
 
@@ -29,8 +30,6 @@ class BaseServicesPresenter:
                    .order_by(get_many_request_schema.get("order_by", "-id"))
                    .only(*get_many_query["only"])
                    .distinct())
-
-        # TODO: get 50 by 50, for ex. last_obj_id, include filtration and order by, etc.
 
         return self.serializers["objects"](objects, many=True)
 
@@ -51,13 +50,13 @@ class BaseServicesPresenter:
         self.model_presenter.model.objects.filter(id=obj_id).delete()
 
     def add(self, add_request_schema: MutableMapping) -> int:
-        serializer = self.serializers["object_form"](data=add_request_schema)
+        serializer = self.serializers["object_add_form"](data=add_request_schema)
         serializer.is_valid(raise_exception=True)
         return serializer.save().id
 
     def edit(self, obj_id: int, edit_request_schema: MutableMapping) -> None:
         obj = self.model_presenter.model.objects.filter(id=obj_id).first()
-        serializer = self.serializers["object_form"](obj, data=edit_request_schema)
+        serializer = self.serializers["object_edit_form"](obj, data=edit_request_schema)
         serializer.is_valid(raise_exception=True)
         serializer.save()
 

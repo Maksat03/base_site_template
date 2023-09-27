@@ -12,7 +12,6 @@ class BaseSerializerPresenter:
                               *args, **kwargs)
 
 
-# Define a custom metaclass for your serializer
 class BaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = None

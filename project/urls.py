@@ -29,7 +29,7 @@ urlpatterns = [
 
     # path('api/portfolio/', include("portfolio.urls")),
     # path('api/product/', include("product.urls")),
-    # path('api/request/', include("request.urls")),
+    path('api/request/', include("request.urls")),
     # path('api/settings/', include("settings.urls")),
     # path('api/user/', include("user.urls")),
 ]
